@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from './assets/logo.svg'; // Importa il file SVG
+import logo from './assets/Logo.svg'; // Importa il file SVG
+import '../../styles/App.css';
 
 function Header() {
   return (

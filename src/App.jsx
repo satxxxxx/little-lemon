@@ -1,19 +1,22 @@
 import React from 'react';
-import Header from './Header.jsx';
-import Nav from './Nav.jsx';
-import Main from './Main component.jsx';
-import Footer from './Footer.jsx';
-import './App.css';
+import Header from './components/Header/Header';
+import Navigation from './components/Navigation/Navigation';
+import ContentArea from './components/ContentArea/ContentArea';
+import Footer from './components/Footer/Footer';
+import './styles/App.css';
 
 function App() {
   return (
     <>
       <Header />
-      <Nav />
-      <Main />
+      <Navigation />
+      <main className="grid-container">
+        <ContentArea />
+      </main>
       <Footer />
     </>
   );
 }
 
 export default App;
+
