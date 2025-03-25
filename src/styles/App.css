@@ -1,123 +1,163 @@
+/* src/styles/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&family=Karla:wght@400;500;700;800&display=swap');
+
+:root {
+  /* Font families */
+  --font-title: 'Markazi Text', serif;
+  --font-body: 'Karla', sans-serif;
+  
+  /* Font sizes e pesi */
+  --font-display-title: 64pt;
+  --font-display-weight: 500; /* Medium */
+  
+  --font-subtitle: 40pt;
+  --font-subtitle-weight: 400; /* Regular */
+  
+  --font-lead-text: 18pt;
+  --font-lead-weight: 500; /* Medium */
+  
+  --font-section-title: 20pt;
+  --font-section-weight: 800; /* Extra Bold */
+  
+  --font-special-section: 16pt;
+  --font-special-weight: 800; /* Extra Bold */
+  
+  --font-card-title: 18pt;
+  --font-card-weight: 700; /* Bold */
+  
+  --font-paragraph: 16pt;
+  --font-paragraph-weight: 400; /* Regular */
+  --line-height-paragraph: 1.5; /* 1.5 line height */
+  
+  --font-highlight: 16pt;
+  --font-highlight-weight: 500; /* Medium */
+  
+  /* Colors */
+  --primary-green: #495E57;
+  --primary-yellow: #F4CE14;
+  --secondary-peach: #EE9972;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Base element styles con colori di sfondo predefiniti */
+body, main {
+  background-color: white; /* Colore di sfondo predefinito per body e main */
+}
+
 body {
-  font-family: 'Karla', sans-serif;
+  font-family: var(--font-body);
   color: #333;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #495E57;
+/* Colori specifici per le sezioni */
+.testimonials-section {
+  background-color: #FFFFFF; /* Colore di sfondo per la sezione testimonials */
 }
 
-.logo {
-  height: 80px;
+/* Display Title - Markazi Text Medium 64pt */
+.display-title {
+  font-family: var(--font-title);
+  font-size: var(--font-display-title);
+  font-weight: var(--font-display-weight);
+  color: var(--primary-green);
 }
 
-nav {
-  background-color: #F4CE14;
-  padding: 15px 0;
+/* Subtitle - Markazi Text Regular 40pt */
+.subtitle {
+  font-family: var(--font-title);
+  font-size: var(--font-subtitle);
+  font-weight: var(--font-subtitle-weight);
 }
 
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style-type: none;
+/* Lead Text - Karla Medium 18pt */
+.lead-text {
+  font-family: var(--font-body);
+  font-size: var(--font-lead-text);
+  font-weight: var(--font-lead-weight);
 }
 
-nav li {
-  margin: 0 15px;
+/* Section Title - Karla Extra Bold 20pt Uppercase */
+.section-title {
+  font-family: var(--font-body);
+  font-size: var(--font-section-title);
+  font-weight: var(--font-section-weight);
+  text-transform: uppercase;
 }
 
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+/* Special Section - Karla Extra Bold 16pt */
+.special-section {
+  font-family: var(--font-body);
+  font-size: var(--font-special-section);
+  font-weight: var(--font-special-weight);
 }
 
-nav a:hover {
-  border-bottom: 2px solid #333;
+/* Card Title - Karla Bold 18pt */
+.card-title {
+  font-family: var(--font-body);
+  font-size: var(--font-card-title);
+  font-weight: var(--font-card-weight);
+}
+
+.order-button {
+  font-size: var(--font-card-title);
+}
+ 
+/* Paragraph Text - Karla Regular 16pt */
+.paragraph, p {
+  font-family: var(--font-body);
+  font-size: var(--font-paragraph);
+  font-weight: var(--font-paragraph-weight);
+  line-height: var(--line-height-paragraph);
+  max-width: 65ch; /* Come specificato, max 65 caratteri per riga */
+}
+
+/* Highlight Text - Karla Medium 16pt */
+.highlight-text {
+  font-family: var(--font-body);
+  font-size: var(--font-highlight);
+  font-weight: var(--font-highlight-weight);
+}
+
+/* Base element styles */
+h1 {
+  font-family: var(--font-title);
+  font-size: var(--font-display-title);
+  font-weight: var(--font-display-weight);
+}
+
+h2 {
+  font-family: var(--font-title);
+  font-size: var(--font-subtitle);
+  font-weight: var(--font-subtitle-weight);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-size: var(--font-section-title);
+  font-weight: var(--font-section-weight);
 }
 
 main {
   min-height: 400px;
-  padding: 30px;
-  text-align: center;
 }
 
-main h1 {
-  margin-bottom: 20px;
-  color: #495E57;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
-  grid-gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.col-span-12 {
-  grid-column: span 12;
-}
-
-.col-span-6 {
-  grid-column: span 6;
-}
-
-.col-span-4 {
-  grid-column: span 4;
-}
-
-.col-span-3 {
-  grid-column: span 3;
-}
-
-.special-item {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.special-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.special-item h2 {
-  margin: 15px 0 10px;
-  color: #333;
-}
-
-.special-item p {
-  margin-bottom: 15px;
-}
-
-.special-item button {
-  background-color: #F4CE14;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+button {
   cursor: pointer;
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-footer {
-  background-color: #495E57;
-  color: white;
-  padding: 20px;
-  text-align: center;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-weight: var(--font-lead-weight);
 }

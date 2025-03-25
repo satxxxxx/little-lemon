@@ -1,0 +1,47 @@
+/* src/components/MenuSection/MenuSection.css */
+ .menu-section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra gli elementi */
+    gap: 20px; /* Spazio tra le card */
+    max-width: 1200px; /* Per evitare eccessiva espansione */
+    margin: auto;
+
+  }
+
+  .menu-item-container {
+    max-width: 300px; /* Limita la larghezza di ogni card */
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-button {
+    font-size: var(--font-card-title); /* se --font-card-title è 18pt */
+    font-weight: bold;
+    display: block;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px 24px;
+    border-radius: 16px;
+    border:none;
+    background-color: var(--primary-yellow);
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+
+
+

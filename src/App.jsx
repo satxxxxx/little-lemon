@@ -1,17 +1,23 @@
+// App.jsx 
 import React from 'react';
 import Header from './components/Header/Header';
-import Navigation from './components/Navigation/Navigation';
-import ContentArea from './components/ContentArea/ContentArea';
+import HeroSection from './components/HeroSection/HeroSection';
+import MenuSection from './components/MenuSection/MenuSection';
+import Testimonials from './components/Testimonials/Testimonials';
+import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import './styles/App.css';
+import './styles/layout.css';
 
 function App() {
   return (
     <>
       <Header />
-      <Navigation />
-      <main className="grid-container">
-        <ContentArea />
+      <main>
+        <HeroSection />
+        <MenuSection />
+        <Testimonials />
+        <About /> 
       </main>
       <Footer />
     </>
@@ -19,4 +25,3 @@ function App() {
 }
 
 export default App;
-
