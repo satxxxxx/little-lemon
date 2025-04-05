@@ -1,28 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
 
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/little-lemon/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+  <!-- Script per bloccare le richieste all'IP problematico -->
+  <script>
+    (function() {
+      const originalFetch = window.fetch;
+      window.fetch = function(url, options) {
+        if (typeof url === 'string' && url.includes('192.168.1.35')) {
+          console.log('Richiesta bloccata:', url);
+          return Promise.resolve(new Response('{}', {status: 200}));
+        }
+        return originalFetch(url, options);
+      };
+      
+      // Blocca anche XMLHttpRequest
+      const originalXHROpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+        if (typeof url === 'string' && url.includes('192.168.1.35')) {
+          console.log('XMLHttpRequest bloccata:', url);
+          // Reindirizza a un URL valido ma vuoto
+          url = 'data:text/plain,{}';
+        }
+        return originalXHROpen.call(this, method, url, ...rest);
+      };
+      
+      console.log('Blocco IP attivato');
+    })();
+  </script>
 
-    <!-- Meta tag standard -->
-    <meta name="title" content="Little Lemon Authentic Italian & Greek Mediterranean Cuisine" />
-    <meta name="description" content="Enjoy the best of Italian & Greek cuisine at Little Lemon. Fresh Mediterranean dishes, homemade pasta & traditional flavors in a cozy atmosphere!" />
+  <!-- Meta tag standard -->
+  <meta name="title" content="Little Lemon Authentic Italian & Greek Mediterranean Cuisine" />
+  <meta name="description" content="Enjoy the best of Italian & Greek cuisine at Little Lemon. Fresh Mediterranean dishes, homemade pasta & traditional flavors in a cozy atmosphere!" />
 
-    <!-- Meta tag OGP -->
-    <meta property="og:title" content="Little Lemon | Taste the Best of Italy & Greece!" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://littlelemon.com" />
-    <meta property="og:site_name" content="Little Lemon" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:description" content="Little Lemon brings the authentic taste of Italy and Greece to your table. Enjoy fresh Mediterranean flavors, homemade pasta, and traditional Greek dishes!" />
-    <meta property="og:image" content="lemontrasparent2.png" />
-    <script type="module" crossorigin src="/little-lemon/assets/index-xgHxm3p4.js"></script>
-    <link rel="stylesheet" crossorigin href="/little-lemon/assets/index-Dd85Vcif.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+  <!-- Meta tag OGP -->
+  <meta property="og:title" content="Little Lemon | Taste the Best of Italy & Greece!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://littlelemon.com" />
+  <meta property="og:site_name" content="Little Lemon" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:description" content="Little Lemon brings the authentic taste of Italy and Greece to your table. Enjoy fresh Mediterranean flavors, homemade pasta, and traditional Greek dishes!" />
+  <meta property="og:image" content="lemontrasparent2.png" />
+  <script type="module" crossorigin src="/assets/index-W5jBYnzj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-i4E1mcQv.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://raw.githubusercontent.com/courseraap/capstone/main/api.js"></script>
+</body>
 </html>
