@@ -1,0 +1,762 @@
+/* src/styles/CheckoutPage.css */
+/* Layout generale */
+.checkout-section {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Titolo principale - Medium 64pt come da linee guida */
+.display-title {
+  margin-bottom: 30px;
+  font-size: 64px;
+  font-weight: 500; /* Medium */
+  font-family: 'Markazi Text', serif;
+  color: #333;
+  text-align: center;
+}
+
+.checkout-container-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Riepilogo dell'ordine */
+.order-summary {
+  background-color: #495E57; /* Verde scuro */
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: white; /* Testo bianco */
+}
+
+/* TITOLO SEZIONE IN MAIUSCOLO EXTRA BOLD 20PT */
+.section-title {
+  font-size: 20px;
+  font-weight: 800; /* EXTRA BOLD */
+  margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+  font-family: 'Karla', sans-serif;
+}
+
+/* Sovrascrive il colore del titolo all'interno del riepilogo ordine */
+.order-summary .section-title {
+  color: white;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.item-image-container {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+/* Titolo Card 18pt Bold */
+.card-title {
+  font-size: 18px;
+  font-weight: 700; /* Bold */
+  margin: 0 0 5px 0;
+  color: #333;
+  font-family: 'Karla', sans-serif;
+}
+
+/* Sovrascrive il colore dei titoli card nel riepilogo ordine */
+.order-summary .card-title {
+  color: white;
+}
+
+.item-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+/* Testo evidenziato per prezzi medium 16pt */
+.highlight-text {
+  font-weight: 500; /* Medium */
+  font-size: 16px;
+  color: #333;
+  font-family: 'Karla', sans-serif;
+}
+
+/* Sovrascrive il colore dei prezzi evidenziati nel riepilogo ordine */
+.order-summary .highlight-text {
+  color: #F4CE14; /* Giallo per evidenziare i prezzi */
+}
+
+.item-quantity {
+  color: #666;
+}
+
+/* Sovrascrive il colore della quantità nel riepilogo ordine */
+.order-summary .item-quantity {
+  color: white;
+}
+
+.item-price {
+  font-size: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3); /* Cambiato per un migliore contrasto su sfondo verde */
+  margin: 20px 0;
+}
+
+.order-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: white; /* Aggiunto per il testo bianco */
+}
+
+.final-total {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* Form di checkout */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Layout per colonne doppie - modificato per migliorare responsività */
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Punto di interruzione migliorato per dispositivi mobile */
+@media (max-width: 767px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .checkout-container-vertical {
+    padding: 20px 15px;
+  }
+  
+  .info-section, .delivery-section {
+    padding: 15px;
+  }
+  
+  /* Riduzione dimensione font su mobile */
+  .display-title {
+    font-size: 42px;
+  }
+  
+  .subtitle {
+    font-size: 32px;
+  }
+  
+  /* Aggiunta margin per separare meglio gli elementi su mobile */
+  .form-group {
+    margin-bottom: 5px;
+  }
+}
+
+/* Etichette categorie 16pt Extra Bold */
+label {
+  font-size: 16px;
+  font-weight: 800; /* Extra Bold */
+  color: #555;
+  font-family: 'Karla', sans-serif;
+}
+
+input, select, textarea {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: #F5F5F5; /* Sfondo grigio chiaro per campi non compilati */
+  color: #333; /* Mantiene il testo scuro nei campi di input */
+  width: 100%; /* Assicura che gli input occupino tutto lo spazio disponibile */
+  box-sizing: border-box; /* Include padding e bordo nella larghezza */
+}
+
+/* Quando l'utente clicca o compila un campo, lo sfondo diventa bianco */
+input:focus, select:focus, textarea:focus,
+input:not(:placeholder-shown), select:not([value=""]), textarea:not(:placeholder-shown) {
+  background-color: white;
+  border-color: #F4CE14;
+  outline: none;
+}
+
+input.error, select.error, textarea.error {
+  border-color: #e74c3c;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Metodi di pagamento */
+.payment-section {
+  background-color: #495E57; /* Verde scuro */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  margin-bottom: 20px;
+  color: white; /* Testo bianco */
+}
+
+.payment-section .info-section-title {
+  color: white;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #3e5048; /* Un verde più scuro per contrasto */
+  color: white;
+}
+
+.payment-option input {
+  margin: 0;
+  width: auto; /* Sovrascrive la regola width: 100% per gli input radio */
+}
+
+.payment-option.selected {
+  border-color: #F4CE14;
+  background-color: #F4CE14; /* Giallo più deciso per l'opzione selezionata */
+  color: black; /* Testo nero sull'opzione selezionata */
+}
+
+.payment-option-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-icon {
+  font-size: 1.5rem;
+}
+
+/* Form carta di credito */
+.credit-card-form {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 20px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #3e5048; /* Un verde più scuro */
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 15px;
+  color: white;
+}
+
+.credit-card-form label {
+  color: white;
+}
+
+/* Sezione dati personali e consegna - sfondo verde */
+.info-section, .delivery-section {
+  background-color: #495E57; /* Verde scuro */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  margin-bottom: 20px;
+  color: white; /* Testo bianco */
+}
+
+.info-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #333;
+  font-family: 'Karla', sans-serif;
+  text-transform: uppercase;
+}
+
+.info-section .info-section-title,
+.delivery-section .info-section-title {
+  color: white;
+}
+
+.info-section label, 
+.delivery-section label {
+  color: white;
+}
+
+/* Consenso privacy */
+.privacy-consent {
+  margin-top: 10px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-container input {
+  margin-top: 3px;
+  width: auto; /* Sovrascrive la regola width: 100% per checkbox */
+}
+
+.consent-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #000000; /* Testo nero per la dichiarazione sulla privacy */
+}
+
+.privacy-link {
+  color: #000000; /* Link nero */
+  text-decoration: underline; /* Solo sottolineatura */
+}
+
+/* Pulsanti di azione */
+.checkout-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.back-button, .confirm-button, .done-button {
+  padding: 14px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.back-button {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.back-button:hover {
+  background-color: #e5e5e5;
+}
+
+.confirm-button, .done-button {
+  background-color: #F4CE14;
+  color: #333;
+}
+
+.confirm-button:hover, .done-button:hover {
+  background-color: #e4be12;
+}
+
+/* Per mantenere coerenza, anche i bottoni di conferma ordine utilizzano lo stesso giallo */
+.back-to-menu-button {
+  background-color: #F4CE14;
+  color: #333;
+  padding: 14px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-to-menu-button:hover {
+  background-color: #e4be12;
+}
+
+/* Stile carrello vuoto */
+.empty-checkout {
+  text-align: center;
+  padding: 50px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Sottotitolo - Regular 40pt */
+.subtitle {
+  font-size: 40px;
+  font-weight: 400; /* Regular */
+  margin-bottom: 15px;
+  color: #333;
+  font-family: 'Markazi Text', serif;
+}
+
+/* Testo paragrafo regular 16pt */
+.paragraph {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-family: 'Karla', sans-serif;
+  font-weight: 400; /* Regular */
+  max-width: 65ch; /* Max 65 caratteri per riga come da specifiche */
+}
+
+/* Popup conferma ordine */
+.order-success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.order-success-popup {
+  background-color: white;
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 550px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative; /* Per il pulsante di chiusura */
+}
+
+/* Pulsante di chiusura (X rossa) */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 0.7;
+  padding: 0;
+  font-weight: bold;
+}
+
+.close-button:hover {
+  background-color: #c0392b;
+}
+
+/* Pulsante Done nel popup di conferma */
+.done-button {
+  margin-top: 20px;
+  padding: 14px 35px;
+  display: inline-block;
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  background-color: #495E57; /* Verde scuro */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  margin: 0 auto 20px;
+}
+
+/* Testo principale! Per elementi descrittivi */
+.lead-text {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 25px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 500; /* Medium */
+}
+
+.confirmation-details {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.order-summary-confirmation {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.order-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.order-items-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-items-list li:last-child {
+  border-bottom: none;
+}
+
+.confirmation-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+/* Stile per il pulsante durante l'elaborazione del pagamento */
+.confirm-button.processing {
+  background-color: #f3d98b;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Animazione spinner per il processamento */
+.processing-spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #333;
+  animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Disabilita i pulsanti durante l'elaborazione */
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Design responsive */
+@media (max-width: 768px) {
+  .checkout-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .back-button, .confirm-button, .done-button {
+    width: 100%;
+  }
+  
+  .order-item {
+    flex-wrap: wrap;
+  }
+  
+  .order-success-popup {
+    padding: 25px;
+    width: 85%;
+  }
+  
+  .close-button {
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+}
+
+/* Stile per le informazioni di contatto */
+.contact-info {
+  margin-top: 25px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.contact-detail {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Stili per i selettori personalizzati di data e ora */
+
+/* Container principale */
+.custom-select-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Pulsante di selezione */
+.custom-select-button {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.custom-select-button:hover {
+  border-color: #495E57;
+}
+
+/* Icona nel pulsante */
+.select-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Testo nel pulsante */
+.select-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+
+/* Freccia del menu a tendina */
+.select-arrow {
+  margin-left: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Menu a tendina */
+.custom-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Valore alto per stare sopra altri elementi */
+}
+
+/* Layout a griglia per gli orari */
+.time-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Opzioni nel menu */
+.custom-select-option {
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: white;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0; /* Separatore sottile */
+}
+
+.custom-select-option:hover {
+  background-color: #f5f5f5;
+}
+
+.custom-select-option.selected {
+  background-color: #F4CE14; /* Giallo per l'opzione selezionata */
+  color: #333;
+  font-weight: bold;
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 767px) {
+  .custom-select-button {
+    height: 45px;
+    padding: 0 12px;
+  }
+  
+  .custom-select-dropdown {
+    max-height: 250px;
+  }
+  
+  .custom-select-option {
+    padding: 10px 12px;
+  }
+}

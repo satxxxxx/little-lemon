@@ -1,4 +1,6 @@
 /* TestimonialsCard.css */
+
+/* Stili di base per la card */
 .testimonial-card {
     background-color: #fff; /* Sfondo bianco */
     border: 1px solid #ddd; /* Bordo sottile grigio */
@@ -11,14 +13,50 @@
     font-family: 'Karla', sans-serif;
 }
 
+/* Stili per l'header della testimonianza con immagine e rating */
+.testimonial-header {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+/* Stili per l'immagine */
 .testimonial-image {
     width: 80px; /* Dimensione dell'immagine */
     height: 80px;
     border-radius: 50%; /* Forma circolare */
     object-fit: cover;
-    margin-bottom: 12px;
 }
 
+/* Stili per il badge di valutazione */
+.rating-badge {
+    position: absolute;
+    bottom: 0px;
+    right: -5px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stili per la stella */
+.star {
+    color: #F4CE14;
+    font-size: 16px;
+    margin-right: 3px;
+}
+
+/* Stili per il valore numerico del rating */
+.rating-value {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Stili per il nome */
 .testimonial-name {
     font-family: 'Karla', sans-serif;
     font-size: 18px; /* Conforme alla specifica "Card Title" */
@@ -27,6 +65,7 @@
     color: #333; /* Testo scuro */
 }
 
+/* Stili per la descrizione */
 .testimonial-description {
     font-family: 'Karla', sans-serif;
     font-size: 16pt; /* Paragraph text regular 16pt come specificato */

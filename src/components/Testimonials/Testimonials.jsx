@@ -1,4 +1,4 @@
-//Testimonials.jsx 
+// src/components/Testimonials/Testimonials.jsx
 import React from 'react';
 import './Testimonials.css';
 import "../../styles/layout.css";
@@ -12,37 +12,57 @@ function Testimonials() {
 
     const testimonials = [
         {
-            name: 'John Doe',
+            name: 'Gigi La Trottola',
             imageSrc: testimonialImage1,
-            imageAlt: 'John Doe',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            imageAlt: 'Photo of customer Gigi La Trottola',
+            description: (
+                <>
+                    Absolutely loved my experience at Little Lemon! The food is always <strong>fresh</strong>, and the service is top-notch.
+                </>
+            ),
+            rating: '4.8'
         },
         {
-            name: 'Jane Doe',
+            name: 'Pippo Baudo',
             imageSrc: testimonialImage2,
-            imageAlt: 'Jane Doe',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            imageAlt: 'Photo of customer Pippo Baudo',
+            description: ( 
+                <> 
+                    Little Lemon never disappoints! <strong>Great ambiance</strong>, delicious dishes, and friendly staff.'
+                </> 
+            ),
+            rating: '4.5'
         },
         {
-            name: 'Alice Doe',
+            name: 'Platinette',
             imageSrc: testimonialImage3,
-            imageAlt: 'Alice Doe',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            imageAlt: 'Photo of customer Platinette',
+            description: (
+                <>
+                    A perfect spot for a <strong>healthy meal!</strong> The flavors at Little Lemon are always amazing.  
+                </>
+            ),
+            rating: '4.7'
         },
         {
-            name: 'Bob Doe',
+            name: 'Topo Gigio',
             imageSrc: testimonialImage4,
-            imageAlt: 'Bob Doe',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            imageAlt: 'Photo of customer Topo Gigio',
+            description: (
+                <>
+                    <strong>Fast</strong> and reliable home delivery from Little Lemon! The food arrives hot and fresh, just like dining in!.
+                </>
+            ),
+            rating: '4.9'
         }
     ];
     
     return (
-        <section className="testimonials-section">
+        <section className="testimonials-section" aria-labelledby="testimonials-title">
             <div className="page-container">
                 <div className="inner-container">
-                    <h2 className="section-title">Testimonials</h2>
-                    <div className="testimonials-grid">
+                    <h2 id="testimonials-title" className="section-title">Testimonials</h2>
+                    <div className="testimonials-grid" aria-label="Customer testimonials">
                         {testimonials.map((testimonial, index) => (
                             <TestimonialsCard
                                 key={index}
@@ -50,6 +70,7 @@ function Testimonials() {
                                 imageSrc={testimonial.imageSrc}
                                 imageAlt={testimonial.imageAlt}
                                 description={testimonial.description}
+                                rating={testimonial.rating}
                             />
                         ))}
                     </div>

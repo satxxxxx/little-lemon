@@ -1,11 +1,22 @@
+// src/components/HeroSection/HeroSection.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importiamo useNavigate per la navigazione
 import './HeroSection.css';
 import '../../styles/layout.css';
-import heroImage from '../../assets/RestauranFood.jpg'; // Importa un'immagine da usare
+import heroImage from '../../assets/RestauranFood.jpg';
 
 function HeroSection() {
+    const navigate = useNavigate(); // Hook per la navigazione
+    
+    // NOTA: Funzione per gestire il click sul pulsante di prenotazione
+    const handleReservationClick = () => {
+        // Naviga alla pagina di prenotazione
+        navigate('/booking');
+    };
+    
     return (
-      <section className="hero-section">
+      // NOTA: Usiamo un elemento semantico section per la sezione hero
+      <section className="hero-section" id="home">
         <div className="page-container">
             <div className="inner-container">
                 <div className="hero-content">
@@ -15,10 +26,21 @@ function HeroSection() {
                         <p className="hero-description">
                             Little Lemon is a cozy Chicago Mediterranean restaurant offering fresh Greek and Italian dishes from Benevento. With quality ingredients and a casual atmosphere, it serves popular salads, grilled seafood and meats with select wines.
                         </p>
-                        <button className="cta-button">Reserve a Table</button>
+                        {/* NOTA: Aggiunto onClick handler e attributi ARIA */}
+                        <button 
+                            className="cta-button" 
+                            onClick={handleReservationClick}
+                            aria-label="Reserve a table at Little Lemon"
+                        >
+                            Reserve a Table
+                        </button>
                     </div>
                     <div className="hero-image-column">
-                        <img src={heroImage} alt="Little Lemon Restaurant" className="hero-image" />
+                        <img 
+                            src={heroImage} 
+                            alt="Little Lemon Restaurant featuring beautifully presented dishes" 
+                            className="hero-image" 
+                        />
                     </div>
                 </div>
             </div>

@@ -36,6 +36,7 @@
   --primary-green: #495E57;
   --primary-yellow: #F4CE14;
   --secondary-peach: #EE9972;
+  --badge-color: #FF0000; /* Rosso acceso per il badge */
 }
 
 * {
@@ -110,6 +111,13 @@ body {
   font-size: var(--font-card-title);
 }
  
+
+/* Regola globale per tutte le icone di consegna */
+.delivery-icon, .order-icon, span:contains("🛵") {
+  font-size: 1.8rem !important;
+  margin-right: 10px;
+}
+
 /* Paragraph Text - Karla Regular 16pt */
 .paragraph, p {
   font-family: var(--font-body);
@@ -146,6 +154,7 @@ h3 {
 }
 
 main {
+  padding-top: 120px; /* Regola questo valore in base all'altezza del tuo header */
   min-height: 400px;
 }
 
@@ -161,3 +170,162 @@ button {
   font-family: var(--font-body);
   font-weight: var(--font-lead-weight);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Stili per l'overlay e il modulo di login */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-modal {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.close-login-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 0.7;
+  padding: 0;
+  font-weight: bold;
+}
+
+.close-login-button:hover {
+  background-color: #c0392b;
+}
+
+.login-title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Markazi Text', serif;
+  font-size: 32px;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-form-group label {
+  font-size: 16px;
+  font-weight: 800;
+  color: #555;
+  font-family: 'Karla', sans-serif;
+}
+
+.input-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  font-family: var(--font-body);
+}
+
+.login-form-group input {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #F5F5F5;
+  transition: all 0.3s;
+}
+
+.login-form-group input:focus {
+  border-color: #F4CE14;
+  background-color: white;
+  outline: none;
+}
+
+.login-button {
+  background-color: #F4CE14;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background-color: #e4be12;
+}
+
+.login-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.login-footer p {
+  margin: 8px 0;
+}
+
+.login-footer a {
+  color: #495e57;
+  text-decoration: underline;
+}
+
+/* Aggiungi a Navigation.css */
+.user-greeting {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #495e57;
+  font-style: italic;
+}
+
+/* Aggiungi a Footer.css */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: white;
+  opacity: 0.9;
+}
+
+.username {
+  font-weight: bold;
+}
+

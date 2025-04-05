@@ -1,32 +1,52 @@
+// src/components/Footer/Footer.jsx
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import FooterColumn from '../FooterColumn/FooterColumn';
 import logo from '../../assets/lemon1.png';
 import './Footer.css';
 import '../../styles/layout.css';
 
-function Footer() {
-  // Links per il footer con URL
-  const navLinks = [
-    { name: 'Home', link: '#home' },
-    { name: 'About', link: '#about' },
-    { name: 'menu', link: '#menu' },
-    { name: 'Reservations', link: '#reservations' },
-    { name: 'Order Online', link: '#orderOnline' },
-    { name: 'Login', link: '#login' }
-  ];
+function Footer({ openLogin, user, onLogout }) {
+  const location = useLocation();
   
-  // Per i contatti, puoi mantenere l'approccio attuale o aggiungere link
-  const contacts = ['Gigio St.', '003412345678', 'Littlelemon@littlelemon.es'];
-  
-  // Social con URL
-  const socials = [
-    { name: 'Facebook', link: 'https://facebook.com' },
-    { name: 'Instagram', link: 'https://instagram.com' },
-    { name: 'Twitter', link: 'https://twitter.com' }
-  ];
+  // NOTA: Funzione per gestire i click sulle sezioni di navigazione
+  const handleSectionClick = (e, id) => {
+    e.preventDefault();
+    
+    // Se non siamo nella homepage, reindirizza alla homepage con hash
+    if (location.pathname !== '/' && location.pathname !== '/little-lemon/') {
+      window.location.href = `/#${id}`;
+      return;
+    }
+    
+    // Altrimenti scorri alla sezione
+    const element = document.getElementById(id);
+    const headerHeight = document.querySelector('.header').offsetHeight || 0;
+    
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - headerHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // NOTA: Gestisci il click sul pulsante Login/Logout
+  const handleAuthClick = (e) => {
+    e.preventDefault();
+    
+    if (user) {
+      // Se l'utente è loggato, effettua il logout
+      onLogout();
+    } else {
+      // Altrimenti apri il modulo di login
+      openLogin();
+    }
+  };
 
   return (
-    <footer className="footer">
+    <footer className="footer" role="contentinfo">
       <div className="page-container">
         <div className="inner-container footer-content">
           <FooterColumn>
@@ -34,21 +54,51 @@ function Footer() {
           </FooterColumn>
           
           <FooterColumn>
-            {navLinks.map((link, index) => (
-              <a key={index} href={link.link} className="footer-link">{link.name}</a>
-            ))}
+            <nav aria-label="Footer navigation">
+              <Link to="/" className="footer-link">Home</Link>
+              <a 
+                href="#about" 
+                onClick={(e) => handleSectionClick(e, 'about')} 
+                className="footer-link"
+              >
+                About
+              </a>
+              <Link to="/menu" className="footer-link">Menu</Link>
+              <a 
+                href="#reservation" 
+                onClick={(e) => handleSectionClick(e, 'reservation')} 
+                className="footer-link"
+              >
+                Reservations
+              </a>
+              <Link to="/menu" className="footer-link">Order Online</Link>
+              <a 
+                href="#" 
+                onClick={handleAuthClick} 
+                className="footer-link"
+              >
+                {user ? 'Logout' : 'Login'}
+              </a>
+              {user && (
+                <div className="user-info" aria-live="polite">
+                  Current user: <span className="username">{user.username}</span>
+                </div>
+              )}
+            </nav>
           </FooterColumn>
           
           <FooterColumn title="Contatti">
-           {contacts.map((contact, index) => (
-              <span key={index}>{contact}</span>  // Usa span invece di p
-           ))}
+            <address>
+              <span>Gigio St.</span>
+              <span>003412345678</span>
+              <span>Littlelemon@littlelemon.es</span>
+            </address>
           </FooterColumn>
           
           <FooterColumn title="Social">
-            {socials.map((social, index) => (
-              <a key={index} href={social.link} className="footer-link" target="_blank" rel="noopener noreferrer">{social.name}</a>
-            ))}
+            <a href="https://facebook.com" className="footer-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page">Facebook</a>
+            <a href="https://instagram.com" className="footer-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram page">Instagram</a>
+            <a href="https://twitter.com" className="footer-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our Twitter page">Twitter</a>
           </FooterColumn>
         </div>
       </div>

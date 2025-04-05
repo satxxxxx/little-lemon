@@ -1,7 +1,8 @@
+// src/components/MenuSection/MenuSection.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import MenuCard from '../MenuCard/MenuCard';
 import './MenuSection.css';
-// import '../../styles/layout.css';
 import GreekSaladImage from '../../assets/GreekSalad.jpg';
 import BruschettaImage from '../../assets/Bruschetta.jpg';
 import LemonDessertImage from '../../assets/LemonDessert.jpg';
@@ -11,37 +12,48 @@ function MenuSection() {
     {
       title: 'Greek Salad',
       price: '$12.99',
-      description: 'Insalata fresca con feta, pomodori, cetrioli e olive nere',
+      description: 'Salad with feta, tomatoes, cucumbers, and olives',
       imageSrc: GreekSaladImage,
-      imageAlt: 'Insalata greca con feta, pomodori, cetrioli e olive'
+      imageAlt: 'Greek salad with feta, tomatoes, cucumbers, and olives'
     },
     {
       title: 'Bruschetta',
       price: '$16.99',
-      description: "Pane tostato con pomodori freschi, basilico e olio d'oliva",
+      description: "Toasted bread with fresh tomatoes, basil, and olive oil",
       imageSrc: BruschettaImage,
-      imageAlt: 'Bruschetta con pomodori freschi e basilico'
+      imageAlt: 'Bruschetta with fresh tomatoes and basil'
     },
     {
       title: 'Lemon Dessert',
       price: '$8.50',
-      description: 'Dolce al limone fresco con glassa e vaniglia',
+      description: 'Fresh lemon dessert with glaze and vanilla',
       imageSrc: LemonDessertImage,
-      imageAlt: 'Dolce al limone con glassa e vaniglia'
+      imageAlt: 'Lemon dessert with glaze and vanilla'
     }
   ];
-
+  
   return (
-    <section className="menu-section">
-      <h2 className="section-title">SPECIALS</h2>
+    <section className="menu-section" id="menu" aria-labelledby="menu-section-title">
+      <div className="title-container">
+        <h2 id="menu-section-title" className="section-title">SPECIALS</h2>
+        <Link 
+          to="/menu" 
+          className="menu-button"
+          aria-label="View full menu"
+        >
+          Online Menu
+        </Link>
+      </div>
       <div className="menu-items">
         {menuItems.map((item, index) => (
-          <div className="menu-item-container" key={index}>
-            <MenuCard {...item} />
-          </div>
+          // NOTA: Usando frammento di React invece di div quando la div è solo un contenitore
+          <React.Fragment key={index}>
+            <div className="menu-item-container">
+              <MenuCard {...item} />
+            </div>
+          </React.Fragment>
         ))}
       </div>
-      <button className="menu-button">Online Menu</button>
     </section>
   );
 }

@@ -9,14 +9,14 @@
 
 .testimonials-section .section-title {
     font-family: 'Karla', sans-serif;
-    font-size: 20pt; /* SECTION TITLE 20PT EXTRA BOLD come specificato */
-    font-weight: 800; /* Extra Bold */
+    /* font-size rimosso per usare il valore globale */
+    font-weight: 800;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 30px;
     color: #333333;
-}
-
+  }
+  
 .testimonials-section .testimonials-grid {
     display: flex; /* Cambiato da grid a flex per avere tutte le card in una riga */
     flex-wrap: nowrap; /* Impedisce il wrapping delle card */

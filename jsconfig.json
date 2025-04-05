@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+      "types": ["vitest/globals"] // Indica a VS Code di usare i tipi di Vitest
+    },
+    "include": ["src/**/*", "test/**/*"]
+  }
