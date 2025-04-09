@@ -1,0 +1,42 @@
+/* src/components/Logo/Logo.css */
+/* .logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: -150px;
+  }
+  
+  .logo {
+    height: 100px;
+    width: auto;
+  }
+
+  /* src/components/Logo/Logo.css */
+.logo-container {
+  display: flex;
+  align-items: center;
+  /* Reemplazamos el margin-left negativo fijo */
+  padding-left: 1rem;
+}
+
+.logo {
+  max-height: 100px;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Reglas para diferentes tamaños de pantalla */
+@media screen and (max-width: 768px) {
+  .logo {
+    max-height: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    max-height: 60px;
+  }
+  .logo-container {
+    padding-left: 0.5rem;
+  }
+}

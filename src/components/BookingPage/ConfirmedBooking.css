@@ -1,0 +1,110 @@
+/* src/components/BookingPage/ConfirmedBooking.css */
+
+.confirmation-wrapper {
+  max-width: 480px;
+  margin: 140px auto 60px; /* distanziamento dalla top navigation */
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: var(--font-body);
+  color: var(--primary-green);
+}
+
+.confirmation-icon {
+  margin-bottom: 24px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.confirmation-icon svg {
+  width: 5rem;
+  height: 5rem;
+  color: white;
+}
+
+.confirmation-title {
+  font-family: var(--font-title);
+  font-size: var(--font-subtitle);
+  font-weight: var(--font-subtitle-weight);
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.confirmation-message {
+  font-family: var(--font-body);
+  font-size: var(--font-paragraph);
+  font-weight: var(--font-paragraph-weight);
+  color: #333;
+  background: none; /* Rimuove il rettangolo verde */
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.confirmation-submessage {
+  font-family: var(--font-body);
+  font-size: var(--font-paragraph);
+  color: #333;
+  margin-bottom: 28px;
+}
+
+.assistance-contact {
+  margin-bottom: 30px;
+}
+
+.contact-intro {
+  font-weight: var(--font-lead-weight);
+  font-size: var(--font-paragraph);
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.contact-details p {
+  font-size: var(--font-paragraph);
+  color: #333;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.contact-details .label {
+  font-weight: bold;
+  color: var(--primary-green);
+}
+
+.back-home-button {
+  background-color: var(--primary-yellow);
+  color: #333;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: var(--font-paragraph);
+  font-weight: var(--font-lead-weight);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-home-button:hover {
+  background-color: #e3be10;
+}
+
+.confirmation-wrapper .confirmation-title {
+  font-size: 2.5rem;
+  font-family: var(--font-title);
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .confirmation-wrapper .confirmation-title {
+    font-size: 1.2rem;
+  }
+}

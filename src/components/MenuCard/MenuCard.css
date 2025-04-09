@@ -1,0 +1,51 @@
+/* src/components/MenuCard/MenuCard.css */
+.menu-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.menu-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.menu-title {
+  font-size: var(--font-card-title);
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+.menu-price {
+  font-weight: 500;
+  color: var(--secondary-peach);
+  margin-bottom: 10px;
+}
+
+.menu-description {
+  flex: 1;
+}  
+
+.order-button {
+  background-color: var(--primary-yellow);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.order-button:hover {
+  opacity: 0.8;
+}

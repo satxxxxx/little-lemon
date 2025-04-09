@@ -1,0 +1,837 @@
+/* src/components/BookingPage/BookingForm.css */
+/* Variabili CSS globali */
+:root {
+  /* Famiglie di font */
+  --font-title: 'Markazi Text', serif;
+  --font-body: 'Karla', sans-serif;
+  
+  /* Dimensioni e pesi dei font */
+  --font-display-title: 64pt;
+  --font-display-weight: 500;
+  
+  --font-subtitle: 40pt;
+  --font-subtitle-weight: 400;
+  
+  --font-lead-text: 18pt;
+  --font-lead-weight: 500;
+  
+  --font-section-title: 20pt;
+  --font-section-weight: 800;
+  
+  --font-special-section: 16pt;
+  --font-special-weight: 800;
+  
+  --font-card-title: 18pt;
+  --font-card-weight: 700;
+  
+  --font-paragraph: 16pt;
+  --font-paragraph-weight: 400;
+  --line-height-paragraph: 1.5;
+  
+  --font-highlight: 16pt;
+  --font-highlight-weight: 500;
+  
+  /* Colori */
+  --primary-green: #495E57;
+  --primary-yellow: #F4CE14;
+  --secondary-peach: #EE9972;
+  --badge-color: #FF0000;
+}
+
+/* Layout generale della pagina */
+.checkout-section {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Contenitore principale con larghezza massima */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Titolo principale della pagina */
+.display-title {
+  margin-bottom: 30px;
+  font-size: 64px;
+  font-weight: 500; 
+  font-family: 'Markazi Text', serif;
+  color: #333;
+  text-align: center;
+}
+
+/* Contenitore verticale del form */
+.checkout-container-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sezioni informative del form */
+.info-section {
+  background-color: #495E57; /* Verde scuro */
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Titoli delle sezioni */
+.info-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: white;
+  font-family: 'Karla', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Form di prenotazione */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Gruppo di elementi del form */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Layout a due colonne */
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Etichette dei campi del form */
+label {
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  font-family: 'Karla', sans-serif;
+}
+
+/* Campi di input, select e textarea */
+input, select, textarea {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: white;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  height: 48px;
+}
+
+textarea {
+  height: auto;
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Stile quando un campo è focalizzato */
+input:focus, select:focus, textarea:focus {
+  border-color: #F4CE14;
+  outline: none;
+}
+
+/* Stile per campi con errori */
+input.error, select.error, textarea.error {
+  border-color: #e74c3c;
+}
+
+/* Messaggio di errore */
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+/* Selettore personalizzato con dropdown */
+.custom-select-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Pulsante del selettore personalizzato */
+.custom-select-button {
+  width: 100%;
+  height: 48px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+/* Effetto hover sul pulsante del selettore */
+.custom-select-button:hover {
+  border-color: #F4CE14;
+}
+
+/* Icona nel selettore */
+.select-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Testo nel selettore */
+.select-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+
+/* Freccia dropdown */
+.select-arrow {
+  margin-left: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Menu dropdown */
+.custom-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Opzioni nel dropdown */
+.custom-select-option {
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Effetto hover sull'opzione */
+.custom-select-option:hover {
+  background-color: #f5f5f5;
+}
+
+/* Opzione selezionata - gialla come nello screenshot */
+.custom-select-option.selected {
+  background-color: var(--primary-yellow);
+  color: #333;
+  font-weight: bold;
+}
+
+/* Sezione degli slot disponibili */
+.available-slots-section {
+  background-color: #3d4f49; /* Verde più scuro */
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Titolo della sezione degli slot */
+.available-slots-section h3 {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-align: center;
+  font-family: var(--font-body);
+}
+
+/* Contenitore degli slot */
+.slots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Singolo slot */
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  min-width: 70px;
+  font-family: var(--font-body);
+}
+
+/* Effetto hover sullo slot */
+.slot:hover {
+  transform: translateY(-3px);
+}
+
+/* Slot selezionato */
+.slot.selected {
+  background-color: var(--primary-yellow);
+  font-weight: bold;
+}
+
+/* Pulsante dentro lo slot */
+.slot-button {
+  font-size: 12px;
+  padding: 4px 8px;
+  background-color: var(--primary-yellow);
+  border-radius: 4px;
+  color: #333;
+}
+
+/* Pulsante nello slot selezionato */
+.slot.selected .slot-button {
+  background-color: #333;
+  color: white;
+}
+
+/* Gruppo per checkbox consenso privacy */
+.form-group.privacy-consent {
+  margin-top: 20px;
+}
+
+/* Contenitore checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  cursor: pointer;
+  padding-left: 30px;
+  color: white;
+  font-family: var(--font-body);
+}
+
+/* Input checkbox nascosto */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Stile personalizzato checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+/* Quando il checkbox è selezionato */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--primary-yellow);
+}
+
+/* Creazione segno di spunta */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Mostra segno di spunta quando selezionato */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Testo consenso privacy */
+.consent-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: white !important;
+}
+
+/* Link della privacy policy */
+.privacy-link {
+  color: var(--primary-yellow);
+  text-decoration: underline;
+}
+
+/* Pulsanti di azione nel form */
+.checkout-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Pulsante indietro */
+.back-button {
+  background-color: #eaeaea;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: var(--font-body);
+}
+
+/* Effetto hover sul pulsante indietro */
+.back-button:hover {
+  background-color: #d5d5d5;
+}
+
+/* Pulsante conferma/continua */
+.continue-button, .confirm-button {
+  background-color: var(--primary-yellow);
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: var(--font-body);
+}
+
+/* Effetto hover sul pulsante conferma */
+.continue-button:hover, .confirm-button:hover {
+  background-color: #e5c019;
+}
+
+/* Overlay conferma prenotazione */
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Aumentato per assicurarsi che sia sopra tutti gli altri elementi */
+}
+
+/* Modale di conferma */
+.confirmation-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  min-width: 300px; /* Aggiunta larghezza minima */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Aumentata l'ombra */
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* Header del modale di conferma */
+.confirmation-header {
+  background-color: var(--primary-green);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Titolo nel modale di conferma */
+.confirmation-header h2 {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+  font-family: var(--font-body);
+}
+
+/* Corpo del modale di conferma */
+.confirmation-body {
+  padding: 20px;
+  max-height: 60vh; /* Aggiunta altezza massima */
+  overflow-y: auto; /* Aggiunto scroll verticale se necessario */
+}
+
+/* Riga di dettaglio */
+.detail-row {
+  display: flex;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Etichetta del dettaglio */
+.detail-label {
+  font-weight: bold;
+  width: 100px;
+  color: #333;
+}
+
+/* Valore del dettaglio */
+.detail-value {
+  flex: 1;
+  color: #333;
+}
+
+/* Sezione sottotitolo */
+.subtotal-section {
+  background-color: #f5f5f5;      /* sfondo grigio chiaro in linea con il design */
+  padding: 15px 20px;            /* spaziatura interna per respiro */
+  border-top: 1px solid #eee;    /* bordo superiore sottile per separare la sezione *
+}
+
+/* Paragrafi nella sezione sottotitolo */
+.subtotal-section p {
+  text-align: center;           /* centra orizzontalmente il testo della frase introduttiva */
+  margin: 5px 0;                /* margine verticale per separarla dagli altri elementi */
+  font-size: 14px;              /* dimensione font leggibile anche su mobile */
+  color: #333;                  /* colore testo coerente con il tema */
+  font-family: var(--font-body);/* font principale del sito */
+}
+}
+
+
+/* Dettagli contatto */
+.contact-detail {
+  display: inline-block;
+  text-align: left;
+  font-size: 14px;
+  color: white;
+  font-family: var(--font-body);
+  margin: 5px 0;                /* margine verticale tra le righe di contatto */
+  width: max-content; /* questo è il trucco per allineare perfettamente */
+}
+
+
+/* Span dentro dettagli contatto */
+.contact-detail span {
+  font-weight: bold;
+}
+
+.assistance-section {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.assistance-section p {
+  margin: 0.5rem 0;
+}
+
+
+/* Azioni di conferma */
+.confirmation-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #eee;
+}
+
+/* Overlay successo ordine */
+.order-success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Aumentato anche questo z-index */
+}
+
+/* Popup successo ordine */
+.order-success-popup {
+  background-color: white;
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 550px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Icona successo */
+.success-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: var(--primary-green);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+/* Pulsante chiusura */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 0.7;
+  padding: 0;
+  font-weight: bold;
+}
+
+/* Hover sul pulsante chiusura */
+.close-button:hover {
+  background-color: #c0392b;
+}
+
+/* Pulsante completato */
+.done-button {
+  background-color: var(--primary-yellow);
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: var(--font-body);
+  margin-top: 20px;
+}
+
+/* Hover sul pulsante completato */
+.done-button:hover {
+  background-color: #e5c019;
+}
+
+/* Dettagli di conferma */
+.confirmation-details {
+  margin-bottom: 30px;
+}
+
+/* Paragrafi nelle informazioni di contatto */
+.confirmation-details {
+  margin-bottom: 30px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-label {
+  font-weight: bold;
+  width: 100px;
+  color: white;
+  font-family: var(--font-body);
+}
+
+.detail-value {
+  flex: 1;
+  color: white;
+  font-family: var(--font-body);
+  font-weight: normal;
+}
+
+/* Bold specific details like date and time */
+.detail-value.highlight {
+  font-weight: bold;
+}
+
+.contact-info {
+  background-color: transparent; /* Rimuove lo sfondo bianco */
+  padding: 20px;
+  border-radius: 4px;
+  margin-top: 20px;
+  color: white; /* Assicura che il testo sia bianco */
+}
+
+.contact-info p {
+  margin: 0 0 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: white; /* Assicura che il testo sia bianco */
+}
+
+.contact-detail {
+  font-size: 14px;
+  margin: 0 auto;
+  text-align: left;
+  color: white; /* Assicura che il testo sia bianco */
+  font-family: var(--font-body);
+  display: inline-block;
+}
+
+.contact-detail span {
+  font-weight: bold;
+  color: white; /* Assicura che il testo in grassetto sia bianco */
+}
+
+.contact-detail p {
+  margin: 0.25rem 0;
+}
+
+/* ORDER CONFIRMATION STYLES */
+.order-success-popup .contact-info {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.order-success-popup .contact-info p,
+.order-success-popup .contact-detail,
+.order-success-popup .contact-detail span,
+.order-success-popup .contact-detail strong {
+  color: #333;
+}
+
+/* RESERVATION CONFIRMATION STYLES */
+.info-section .contact-info {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.info-section .contact-info p,
+.info-section .contact-detail,
+.info-section .contact-detail span {
+  color: white;
+}
+
+/* OVERRIDE PER ELIMINARE QUALSIASI STILE CONFLITTUALE */
+.info-section .contact-info,
+.confirmation-details .contact-info {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.info-section .contact-info p,
+.info-section .contact-info .contact-detail,
+.info-section .contact-info .contact-detail span {
+  color: white !important;
+}
+
+/* Colori specifici per la modale di conferma - correzioni */
+.confirmation-modal .detail-label {
+  color: #333;
+}
+
+.confirmation-modal .detail-value {
+  color: #333;
+}
+
+.confirmation-modal .detail-row {
+  border-bottom: 1px solid #eee;
+}
+
+/* Fix per gli elementi mobili */
+@media (max-width: 768px) {
+  /* Layout a due colonne su mobile */
+  .two-columns {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  /* Azioni del form su mobile */
+  .checkout-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Pulsanti su mobile */
+  .back-button, .continue-button, .confirm-button, .done-button {
+    width: 100%;
+  }
+  
+  /* Titolo principale su mobile */
+  .display-title {
+    font-size: 42px;
+  }
+  
+  /* Modale su mobile */
+  .confirmation-modal {
+    width: 95%;
+    max-width: none;
+  }
+  
+  .confirmation-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .confirmation-actions button {
+    width: 100%;
+  }
+}
+
+.booking-container-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-title {
+  font-size: 1.5rem !important; /* ≈ 24px */
+  font-weight: 700 !important;
+  font-family: var(--font-title);
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Titolo del messaggio di conferma in modale */
+.order-success-popup .confirmation-title {
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  font-family: var(--font-title);
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+

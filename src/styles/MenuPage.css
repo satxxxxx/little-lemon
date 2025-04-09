@@ -1,0 +1,24 @@
+/* src/pages/MenuPage.css */
+.menu-page-section {
+  padding: 60px 20px;
+  background-color: #FFFFFF;
+  width: 100%;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center; /* Centra tutto il contenuto */
+}
+
+.delivery-notice {
+  margin: 0 auto; /* Centra il paragrafo orizzontalmente */
+  margin-bottom: 40px;
+  color: var(--secondary-peach);
+  font-size: 18pt;
+  width: fit-content; /* Adatta la larghezza al contenuto */
+}
+
+.delivery-icon {
+  margin-right: 10px;
+}

@@ -1,0 +1,75 @@
+/* src/components/MenuSection/MenuSection.css */
+.menu-section {
+  padding: 60px 0;
+}
+
+.title-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto 30px;
+  height: 45px; /* Leggermente aumentato */
+}
+
+.section-title {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Karla', sans-serif;
+  font-size: 20pt;
+  font-weight: 800; /* Extra Bold */
+  color: #333;
+}
+
+.menu-button {
+  position: absolute;
+  right: -20px; /* Valore negativo per estendersi oltre il container */
+  height: auto; /* Rimuove l'altezza fissa */
+  padding: 12px 24px;
+  font-size: var(--font-card-title);
+  font-weight: bold;
+  border-radius: 16px;
+  background-color: var(--primary-yellow);
+  color: black;
+  border: none;
+  cursor: pointer;
+  line-height: normal; /* Per prevenire lo schiacciamento */
+}
+
+.menu-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.menu-item-container {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+}
+
+.menu-button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .title-container {
+    height: auto;
+    display: block;
+    padding-bottom: 60px;
+  }
+  
+  .menu-button {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    margin-top: 15px;
+  }
+}

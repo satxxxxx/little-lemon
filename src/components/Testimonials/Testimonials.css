@@ -1,0 +1,66 @@
+/* Testimonials.css */
+
+.testimonials-section {
+    background-color: #495E57;
+    padding: 60px 20px;
+    padding-bottom: 30;
+}
+
+
+.testimonials-section .section-title {
+    font-family: 'Karla', sans-serif;
+    /* font-size rimosso per usare il valore globale */
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333333;
+  }
+  
+.testimonials-section .testimonials-grid {
+    display: flex; /* Cambiato da grid a flex per avere tutte le card in una riga */
+    flex-wrap: nowrap; /* Impedisce il wrapping delle card */
+    justify-content: space-between; /* Distribuisce equamente lo spazio tra le card */
+    gap: 20px;
+}
+
+.testimonials-section .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonials-section .inner-container {
+    background-color: #FFFFFF; /* Aggiunto colore di sfondo bianco */
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 60px;
+}
+
+.testimonials-section .testimonials-grid .testimonial-card {
+    flex: 1; /* Fa occupare a ciascuna card la stessa quantità di spazio */
+    min-width: 200px; /* Imposta una larghezza minima per le card */
+    border: none !important; /* Rimuove qualsiasi bordo */
+}
+
+.testimonials-section .testimonials-grid .testimonial-card:hover {
+    background-color: #F4CE14;
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Aggiunta di media query per la responsività */
+@media (max-width: 900px) {
+    .testimonials-section .testimonials-grid {
+        flex-wrap: wrap; /* Su schermi più piccoli, permette alle card di andare a capo */
+    }
+    
+    .testimonials-section .testimonials-grid .testimonial-card {
+        flex: 0 0 45%; /* Su schermi più piccoli, 2 card per riga */
+    }
+}
+
+@media (max-width: 600px) {
+    .testimonials-section .testimonials-grid .testimonial-card {
+        flex: 0 0 100%; /* Su schermi molto piccoli, 1 card per riga */
+    }
+}
