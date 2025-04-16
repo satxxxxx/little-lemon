@@ -22,10 +22,19 @@
 
 /* Stili per l'immagine */
 .testimonial-image {
-    width: 80px; /* Dimensione dell'immagine */
+    display: block;
+    width: 80px;
     height: 80px;
-    border-radius: 50%; /* Forma circolare */
+    max-width: 100%;
     object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Extra sicurezza contro comportamenti strani in produzione */
+.testimonial-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Stili per il badge di valutazione */
