@@ -19,7 +19,7 @@ function MenuCard({ title, price, description, imageSrc, imageAlt }) {
           aria-label={`Order ${title}`}
         >
           <span aria-hidden="true">🛵 </span>
-          Ordina ora
+          Order Now
         </Link>
       </div>
     </article>

@@ -22,7 +22,7 @@
   --font-special-section: 16pt;
   --font-special-weight: 800; /* Extra Bold */
   
-  --font-card-title: 18pt;
+  --font-card-title: 18px;
   --font-card-weight: 700; /* Bold */
   
   --font-paragraph: 16pt;
@@ -108,8 +108,23 @@ body {
 }
 
 .order-button {
+  background-color: var(--primary-yellow);
+  color: black;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 20px; /* leggermente ridotto per eleganza */
   font-size: var(--font-card-title);
-}
+  font-weight: var(--font-card-weight);
+  font-family: var(--font-body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+  width: auto;       /* 👈 il bottone NON riempie tutta la card */
+  margin: 0 auto;    /* 👈 lo centriamo dentro la card */
+  min-width: 160px;  /* 👈 evita che diventi troppo stretto */
+} 
  
 
 /* Regola globale per tutte le icone di consegna */
@@ -205,7 +220,7 @@ html {
   right: 15px;
   width: 30px;
   height: 30px;
-  background-color: #e74c3c;
+  background-color: white;
   color: white;
   border: none;
   border-radius: 50%;

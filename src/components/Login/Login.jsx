@@ -140,6 +140,7 @@ function Login({ isOpen, onClose, onLogin }) {
               aria-required="true"
               aria-invalid={errors.email ? "true" : "false"}
               aria-describedby={errors.email ? "email-error" : undefined}
+              autoFocus
             />
             {errors.email && (
               <span id="email-error" className="error-message" role="alert">

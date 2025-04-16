@@ -1,0 +1,59 @@
+.floating-help {
+  position: fixed;
+  bottom: 30px;
+  right: 100px;
+  background-color: #FFD700;
+  color: black;
+  padding: 10px 16px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 10; /* << cambia da 9999 a 10 */
+  transition: background-color 0.2s ease;
+}
+
+.floating-help:hover {
+  background-color: #f4c400;
+}
+
+.help-panel {
+  position: fixed;
+  bottom: 80px;
+  right: 100px;
+  width: 260px;
+  background-color: white;
+  color: black;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  padding: 16px;
+  font-family: inherit;
+}
+
+.help-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.help-panel-header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.close-help {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+.help-panel-body p {
+  font-size: 14px;
+  margin: 6px 0;
+}

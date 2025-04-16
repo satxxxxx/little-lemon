@@ -1,0 +1,109 @@
+
+.reservation-form-wrapper {
+  position: relative; /* ⬅️ questa è la chiave! */
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem 2rem 0 2rem;
+}
+
+.form-section-green {
+  background-color: var(--primary-green);
+  color: white;
+  padding: 2rem 2rem 1rem 2rem;
+  border-radius: 8px;
+  position: relative; /* ⬅️ questa è la chiave */
+}
+
+.form-section-white {
+  background-color: white;
+  padding: 2rem 0 2rem 0; /* ⬅️ tolto padding laterale */
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.continue-button,
+.back-button {
+  padding: 14px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background-color: #f4ce14; /* usa var(--primary-yellow) se lo hai */
+  color: #333;
+}
+
+/* Copiato dallo stile delivery */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: white; /* ✅ bianco di base */
+  border: none;
+  color: var(--primary-green); /* ✅ X verde o bianca se preferisci */
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.close-button:hover {
+  background-color: #dc3545 !important;
+  color: white;
+  border-color: white;
+}
+
+input,
+select,
+textarea {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.two-columns {
+  display: flex;
+  gap: 1rem; /* o meno */
+  width: 100%;
+}
+
+.two-columns .form-group {
+  flex: 1;
+}
+
+.processing-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

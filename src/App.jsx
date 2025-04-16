@@ -9,10 +9,14 @@ import MenuPage from './pages/MenuPage';
 import BookingPage from './components/BookingPage/BookingPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './components/Cart/Cart';
+import ShortcutsToast from './components/ShortcutsToast/ShortcutsToast';
+import Help from './components/Help/Help';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import ConfirmedBooking from './components/BookingPage/ConfirmedBooking'; // ✅ Nuovo import
 import { fetchAPI, submitAPI } from './api';
+
+
 
 function initializeTimes() {
   const today = new Date();
@@ -52,6 +56,36 @@ function App() {
     }
   }, [location]);
   const navigate = useNavigate();
+  useEffect(() => {
+    const handleShortcutKeys = (e) => {
+      if (e.altKey) {
+        switch (e.key.toLowerCase()) {
+          case "h":
+            e.preventDefault();
+            navigate("/");
+            break;
+          case "m":
+            e.preventDefault();
+            navigate("/menu");
+            break;
+          case "r":
+            e.preventDefault();
+            navigate("/booking");
+            break;
+          case "c":
+            e.preventDefault();
+            navigate("/checkout");
+            break;
+          // Non serve gestire Alt + / qui, lo gestisce Help.jsx
+          default:
+            break;
+        }
+      }
+    };
+  
+    window.addEventListener("keydown", handleShortcutKeys);
+    return () => window.removeEventListener("keydown", handleShortcutKeys);
+  }, [navigate]);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [availableTimes, dispatch] = useReducer(availableTimesReducer, [], initializeTimes);
@@ -107,6 +141,8 @@ function App() {
       <Cart />
       <Footer openLogin={openLogin} user={user} onLogout={handleLogout} />
       <Login isOpen={isLoginOpen} onClose={closeLogin} onLogin={handleLogin} />
+      <ShortcutsToast />
+      <Help />
     </CartProvider>
   );
 }

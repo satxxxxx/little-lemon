@@ -150,11 +150,15 @@ function CheckoutPage() {
         
       case 1: // Dati personali
         if (!formData.firstName.trim()) {
-          newErrors.firstName = 'First name is required';
+          newErrors.firstName = 'Please enter your first name';
+        } else if (!/^[a-zA-Z\s-]+$/.test(formData.firstName)) {
+          newErrors.firstName = 'First name can include only letters, spaces, or hyphens';
         }
         
         if (!formData.lastName.trim()) {
-          newErrors.lastName = 'Last name is required';
+          newErrors.lastName = 'Please enter your last name';
+        } else if (!/^[a-zA-Z\s-]+$/.test(formData.lastName)) {
+          newErrors.lastName = 'Last name can include only letters, spaces, or hyphens';
         }
         
         if (!formData.email.trim()) {
@@ -172,12 +176,12 @@ function CheckoutPage() {
         break;
         
       case 2: // Dettagli di consegna
-        if (!formData.address.trim()) {
-          newErrors.address = "Address is required";
+        if (!formData.address.trim() || !/.*[a-zA-ZÀ-ÿ'’].*/.test(formData.address)) {
+          newErrors.address = "Please enter a valid address with at least one letter";
         }
         
-        if (!formData.city.trim()) {
-          newErrors.city = 'City is required';
+        if (!formData.city.trim() || !/.*[a-zA-ZÀ-ÿ'’].*/.test(formData.city)) {
+          newErrors.city = "Please enter a valid city name with at least one letter";
         }
         
         if (!formData.zip.trim()) {
@@ -338,6 +342,7 @@ function CheckoutPage() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
+                  autoFocus={currentStep === 1}
                   className={errors.firstName ? 'error' : ''}
                   placeholder="John"
                   aria-required="true"
@@ -456,7 +461,7 @@ function CheckoutPage() {
             
             <div className="two-columns">
               <div className="form-group">
-                <label htmlFor="deliveryDate">Delivery Date</label>
+                <label id="date-label">Delivery Date</label>
                 <div className="custom-select-container">
                   <div 
                     className="custom-select-button"
@@ -496,7 +501,7 @@ function CheckoutPage() {
               </div>
               
               <div className="form-group">
-                <label htmlFor="deliveryTime">Delivery Time</label>
+                <label id="time-label">Delivery Time</label>
                 <div className="custom-select-container">
                   <div 
                     className="custom-select-button"
@@ -783,15 +788,26 @@ function CheckoutPage() {
     <section className="checkout-section">
       <div className="page-container">
         <h1 className="display-title">Checkout</h1>
-        
+  
         <CheckoutProgressBar 
           currentStep={currentStep} 
           steps={checkoutSteps} 
         />
-        
+  
         <div className="checkout-container-vertical">
+          <div className="checkout-close-wrapper">
+            <button
+              className="close-button"
+              onClick={() => navigate('/')}
+              aria-label="Close checkout form"
+            >
+              ×
+            </button>
+          </div>
+  
           <form onSubmit={handleSubmit} className="checkout-form" aria-label="Checkout form">
             {renderStep()}
+  
             <div className="checkout-actions">
               {currentStep > 0 && (
                 <button 
@@ -805,7 +821,7 @@ function CheckoutPage() {
                   Back
                 </button>
               )}
-              
+  
               {currentStep === 0 && (
                 <button 
                   type="button" 
@@ -818,7 +834,7 @@ function CheckoutPage() {
                   Back to Menu
                 </button>
               )}
-              
+  
               {currentStep < checkoutSteps.length - 1 ? (
                 <button 
                   type="button" 
@@ -856,5 +872,6 @@ function CheckoutPage() {
       </div>
     </section>
   );
-}
-export default CheckoutPage;
+  }
+  
+  export default CheckoutPage;

@@ -25,4 +25,6 @@ function BookingPage({ availableTimes, updateTimes, submitForm }) {
   );
 }
 
+
+
 export default BookingPage;

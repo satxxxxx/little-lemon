@@ -1,0 +1,136 @@
+
+/* ================= FORM COMMON STYLES ================= */
+
+:root {
+  --font-title: 'Markazi Text', serif;
+  --font-body: 'Karla', sans-serif;
+  --font-display-title: 64pt;
+  --font-display-weight: 500;
+  --font-subtitle: 40pt;
+  --font-subtitle-weight: 400;
+  --font-lead-text: 18pt;
+  --font-lead-weight: 500;
+  --font-section-title: 20pt;
+  --font-section-weight: 800;
+  --font-paragraph: 16pt;
+  --font-paragraph-weight: 400;
+  --font-highlight: 16pt;
+  --font-highlight-weight: 500;
+  --primary-green: #495E57;
+  --primary-yellow: #F4CE14;
+  --secondary-peach: #EE9972;
+  --badge-color: #FF0000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #333;
+  line-height: 1.5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+input, select, textarea {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus {
+  background-color: white;
+  border-color: var(--primary-yellow);
+  outline: none;
+}
+
+input.error, select.error, textarea.error {
+  border-color: #e74c3c;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: var(--font-body);
+  color: #555;
+}
+
+.confirm-button.processing {
+  background-color: #f3d98b;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.processing-spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #333;
+  animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: var(--primary-green);
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #dc3545 !important;
+  color: white;
+  border-color: white;
+}

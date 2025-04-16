@@ -1,8 +1,27 @@
 // src/components/FormSteps/ReservationForm.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CheckoutProgressBar from '../CheckoutProgressBar/CheckoutProgressBar';
+import '../../styles/ReservationForm.css';
+
+
+
+const formatToAMPM = (timeStr) => {
+  if (!timeStr) return '';
+  if (typeof timeStr === 'object' && timeStr.label) return timeStr.label;
+  const [hour, minute] = timeStr.split(":");
+  const date = new Date();
+  date.setHours(+hour);
+  date.setMinutes(+minute);
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  });
+};
 
 function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
+  const navigate = useNavigate();
   // Step labels per la progress bar
   const steps = ["Personal Information", "Reservation Details", "Confirmation"];
 
@@ -34,6 +53,9 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
   // Stato per mostrare la finestra di conferma (riepilogo) e quella di successo finale
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [isProcessingReservation, setIsProcessingReservation] = useState(false);
+
+  
 
   // Genera le opzioni per i prossimi 7 giorni (etichetta leggibile e valore ISO per confronti)
   const generateDateOptions = () => {
@@ -109,10 +131,14 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
     if (currentStep === 0) {
       // Validazione Step 1: informazioni personali
       if (!formData.firstName.trim()) {
-        newErrors.firstName = 'First name is required';
+        newErrors.firstName = 'Please enter your first name';
+      } else if (!/^[a-zA-Z\s-]+$/.test(formData.firstName)) {
+        newErrors.firstName = 'First name can include only letters, spaces, or hyphens';
       }
       if (!formData.lastName.trim()) {
-        newErrors.lastName = 'Last name is required';
+        newErrors.lastName = 'Please enter your last name';
+      } else if (!/^[a-zA-Z\s-]+$/.test(formData.lastName)) {
+        newErrors.lastName = 'Last name can include only letters, spaces, or hyphens';
       }
       if (!formData.email.trim()) {
         newErrors.email = 'Email is required';
@@ -162,10 +188,22 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
   };
 
   // Conferma definitiva della prenotazione (chiamato quando si preme "Confirm Reservation" nel riepilogo)
-  const confirmBooking = () => {
-    onSubmit(formData);              // Invoca la funzione di submit passata dalle props (es. invio al server)
-    setShowConfirmation(false);      // Chiude il modal di riepilogo
-    setOrderPlaced(true);            // Mostra il messaggio di successo finale
+  const confirmBooking = async () => {
+    setIsProcessingReservation(true); // 🔄 Mostra lo spinner
+  
+    try {
+      // 🔽 Simula un piccolo ritardo per mostrare lo spinner (es. 1.5 secondi)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+  
+      await onSubmit(formData);       // ⏱️ Attendi l’invio dati
+      setShowConfirmation(false);     // ✅ Chiudi il riepilogo
+      setOrderPlaced(true);           // 🎉 Mostra conferma finale
+    } catch (error) {
+      console.error("Errore durante la prenotazione:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsProcessingReservation(false); // 🧹 Nascondi lo spinner in ogni caso
+    }
   };
 
   // Chiude il messaggio di conferma finale e resetta il form (chiamato quando si preme "Done" o la X di chiusura)
@@ -206,7 +244,6 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
     return (
     <>
     <CheckoutProgressBar steps={steps} currentStep={currentStep} />
-    <div className="booking-container-vertical">
       <div className="order-success-overlay" role="dialog" aria-modal="true" aria-labelledby="reservation-success-title">
         <div className="order-success-popup">
           <button 
@@ -221,7 +258,6 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
               <circle cx="12" cy="12" r="12" fill="#495E57" />
               <path d="M17 7l-7.5 8L7 11" stroke="white" strokeWidth="2" fill="none" />
             </svg>
-          </div>
           <h2 className="confirmation-title" id="reservation-success-title">Reservation Confirmed!</h2>
 
           <p className="lead-text">
@@ -232,7 +268,7 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
               We've sent a confirmation to: <strong>{formData.email}</strong>
             </p>
             <p className="paragraph">
-              Your table is reserved for <strong>{formatDate(formData.date)}</strong> at <strong>{formData.time}</strong>.
+              Your table is reserved for <strong>{formatDate(formData.date)}</strong> at <strong>{formatToAMPM(formData.time)}</strong>.
             </p>
             <p className="paragraph">
               Number of guests: <strong>{formData.guests}</strong>
@@ -279,7 +315,7 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
             </div>
             <div className="detail-row">
               <span className="detail-label">Time:</span>
-              <span className="detail-value">{formData.time}</span>
+              <span className="detail-value">{formatToAMPM(formData.time)}</span>
             </div>
             <div className="detail-row">
               <span className="detail-label">Guests:</span>
@@ -313,13 +349,27 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
             >
               Back
             </button>
+
+            {isProcessingReservation ? (
+            <button 
+              type="button"
+              className="confirm-button processing"
+              disabled
+              aria-disabled="true"
+              aria-label="Processing reservation"
+            >
+              <span className="processing-spinner" aria-hidden="true"></span>
+              Processing...
+            </button>
+          ) : (
             <button 
               type="button" 
-              className="continue-button"
+              className="confirm-button"
               onClick={confirmBooking}
             >
               Confirm Reservation
             </button>
+          )}
           </div>
         </div>
       </div>
@@ -332,105 +382,115 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
   return (
     <>
     <CheckoutProgressBar steps={steps} currentStep={currentStep} />
-    <div className="booking-container-vertical">
-    <div>
+    
       {/* Barra di progresso */}
 
       {/* Step 1: Informazioni personali */}
-      {currentStep === 0 && (
-        <div className="reservation-form-card">
-          <div className="reservation-form-header">
-          <h2 className="info-section-title">PERSONAL INFORMATION</h2>
-          </div>
-          <div className="reservation-form-body">
-            <div className="two-columns">
-              <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
-                <input 
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="John"
-                  className={errors.firstName ? 'error' : ''}
-                  aria-required="true"
-                  aria-invalid={errors.firstName ? "true" : "false"}
-                />
-                {errors.firstName && <span className="error-message" role="alert">{errors.firstName}</span>}
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <input 
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Doe"
-                  className={errors.lastName ? 'error' : ''}
-                  aria-required="true"
-                  aria-invalid={errors.lastName ? "true" : "false"}
-                />
-                {errors.lastName && <span className="error-message" role="alert">{errors.lastName}</span>}
-              </div>
-            </div>
-            <div className="two-columns">
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input 
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="john@example.com"
-                  className={errors.email ? 'error' : ''}
-                  aria-required="true"
-                  aria-invalid={errors.email ? "true" : "false"}
-                />
-                {errors.email && <span className="error-message" role="alert">{errors.email}</span>}
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <input 
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="0123456789"
-                  className={errors.phone ? 'error' : ''}
-                  aria-required="true"
-                  aria-invalid={errors.phone ? "true" : "false"}
-                />
-                {errors.phone && <span className="error-message" role="alert">{errors.phone}</span>}
-              </div>
-            </div>
-          </div>
-          <div className="reservation-form-actions">
-            <button 
-              type="button" 
-              className="back-button" 
-              disabled 
-              aria-disabled="true"
-            >
-              Back
-            </button>
-            <button 
-              type="button" 
-              className="continue-button"
-              onClick={handleNextStep}
-            >
-              Continue
-            </button>
-          </div>
+      {
+  currentStep === 0 && (
+    <div className="reservation-form-wrapper">
+      <div className="form-section-green">
+        <button
+                    className="close-button"
+                    onClick={() => navigate(-1)}
+                    aria-label="Close reservation form"
+                  >
+                    ×
+                  </button>
+                  <div className="reservation-form-header">
+                  <h2 className="info-section-title">PERSONAL INFORMATION</h2>
+                  </div>
+                    <div className="two-columns">
+                      <div className="form-group">
+                        <label htmlFor="firstName">First Name</label>
+                        <input 
+                          type="text"
+                          id="firstName"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          placeholder="John"
+                          className={errors.firstName ? 'error' : ''}
+                          aria-required="true"
+                          aria-invalid={errors.firstName ? "true" : "false"}
+                          autoFocus={currentStep === 0}
+                        />
+                        {errors.firstName && <span className="error-message" role="alert">{errors.firstName}</span>}
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input 
+                          type="text"
+                          id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          placeholder="Doe"
+                          className={errors.lastName ? 'error' : ''}
+                          aria-required="true"
+                          aria-invalid={errors.lastName ? "true" : "false"}
+                        />
+                        {errors.lastName && <span className="error-message" role="alert">{errors.lastName}</span>}
+                      </div>
+                    </div>
+                    <div className="two-columns">
+                      <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input 
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="john@example.com"
+                          className={errors.email ? 'error' : ''}
+                          aria-required="true"
+                          aria-invalid={errors.email ? "true" : "false"}
+                        />
+                        {errors.email && <span className="error-message" role="alert">{errors.email}</span>}
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="phone">Phone</label>
+                        <input 
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="0123456789"
+                          className={errors.phone ? 'error' : ''}
+                          aria-required="true"
+                          aria-invalid={errors.phone ? "true" : "false"}
+                        />
+                        {errors.phone && <span className="error-message" role="alert">{errors.phone}</span>}
+                      </div>
+                    </div>
+                  
+      </div>
+      <div className="form-section-white" style={{ display: "flex", justifyContent: "space-between" }}>
+  <div></div> {/* Spazio occupato da "Back" */}
+          <button 
+            type="button" 
+            className="continue-button"
+            onClick={handleNextStep}
+          >
+            Continue
+          </button>
         </div>
-      )}
+            </div>
+          )
+        }
 
       {/* Step 2: Dettagli della prenotazione */}
       {currentStep === 1 && (
         <div className="reservation-form-card">
+          <button
+            className="close-button"
+            onClick={() => navigate(-1) || navigate('/')}
+            aria-label="Close reservation form"
+          >
+            ×
+          </button>
           <div className="reservation-form-header">
             <h2>INFORMATION DETAILS</h2>
           </div>
@@ -490,7 +550,7 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
                     tabIndex={0}
                   >
                     <span className="select-icon" aria-hidden="true">🕒</span>
-                    <span className="select-text">{formData.time}</span>
+                    <span className="select-text">{formatToAMPM(formData.time)}</span>
                     <span className="select-arrow" aria-hidden="true">▼</span>
                   </div>
                   {isTimeDropdownOpen && (
@@ -500,17 +560,17 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
                       aria-labelledby="time-label"
                     >
                       {availableTimes.map((timeOption, index) => (
-                        <div 
-                          key={index}
-                          className={`custom-select-option ${formData.time === timeOption ? 'selected' : ''}`}
-                          onClick={() => handleTimeSelect(timeOption)}
-                          role="option"
-                          aria-selected={formData.time === timeOption}
-                          tabIndex={0}
-                        >
-                          {timeOption}
-                        </div>
-                      ))}
+  <div 
+    key={index}
+    className={`custom-select-option ${formData.time === timeOption.value ? 'selected' : ''}`}
+    onClick={() => handleTimeSelect(timeOption.value)}
+    role="option"
+    aria-selected={formData.time === timeOption.value}
+    tabIndex={0}
+  >
+    {timeOption.label}
+  </div>
+))}
                     </div>
                   )}
                 </div>
@@ -589,19 +649,19 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
                   role="radiogroup"
                   aria-labelledby="available-slots-heading"
                 >
-                  {availableTimes.map(timeOption => (
-                    <div 
-                      key={timeOption}
-                      className={`slot ${formData.time === timeOption ? 'selected' : ''}`}
-                      onClick={() => handleTimeSelect(timeOption)}
-                      role="radio"
-                      aria-checked={formData.time === timeOption}
-                      tabIndex={formData.time === timeOption ? 0 : -1}
-                    >
-                      {timeOption}
-                      <span className="slot-button" aria-hidden="true">Select</span>
-                    </div>
-                  ))}
+                  {availableTimes.map(({ value, label }) => (
+  <div 
+    key={value}
+    className={`slot ${formData.time === value ? 'selected' : ''}`}
+    onClick={() => handleTimeSelect(value)}
+    role="radio"
+    aria-checked={formData.time === value}
+    tabIndex={formData.time === value ? 0 : -1}
+  >
+    {label}
+    <span className="slot-button" aria-hidden="true">Select</span>
+  </div>
+))}
                 </div>
               ) : (
                 <p className="highlight-text">⚠️ No available times for the selected date.</p>
@@ -628,35 +688,58 @@ function ReservationForm({ availableTimes, updateTimes, onSubmit }) {
       )}
 
       {/* Step 3: (Lo step 3 visuale è gestito tramite il riepilogo in modale, quindi qui non renderizziamo un card separato) */}
-      {currentStep === 2 && (
-        <div className="reservation-form-card">
-          <div className="reservation-form-header">
-            <h2>RESERVATION CONFIRMATION</h2>
-          </div>
-          <div className="reservation-form-body">
-            {/* I dettagli della prenotazione verranno mostrati nella finestra di conferma (modale) */}
-            <p style={{ textAlign: 'center' }}>Please review your reservation details in the next window.</p>
-          </div>
-          <div className="reservation-form-actions">
-            <button 
-              type="button" 
-              className="back-button"
-              onClick={handlePrevStep}
-            >
-              Back
-            </button>
-            <button 
-              type="button" 
-              className="continue-button"
-              onClick={handleShowConfirmation}
-            >
-              Continue
-            </button>
-          </div>
-        </div>
-      )}
+      {
+  currentStep === 2 && (
+    <div className="reservation-form-wrapper">
+      <div className="form-section-green">
+        <button
+                    className="close-button"
+                    onClick={() => navigate(-1)}
+                    aria-label="Close reservation form"
+                  >
+                    ×
+                  </button>
+                  <div className="reservation-form-header">
+                    <h2>RESERVATION CONFIRMATION</h2>
+                  </div>
+                  <div className="reservation-form-body">
+                    {/* I dettagli della prenotazione verranno mostrati nella finestra di conferma (modale) */}
+                    <p style={{ textAlign: 'center' }}>Please review your reservation details in the next window.</p>
+                  </div>
+      </div>
+      <div className="form-section-white">
+  <button 
+    type="button" 
+    className="back-button"
+    onClick={handlePrevStep}
+    disabled={isProcessingReservation}
+    aria-disabled={isProcessingReservation}
+  >
+    Back
+  </button>
+
+  {isProcessingReservation ? (
+    <button 
+      className="continue-button processing" 
+      disabled
+      aria-disabled="true"
+    >
+      <span className="processing-spinner" aria-hidden="true"></span> Processing...
+    </button>
+  ) : (
+    <button 
+      type="button" 
+      className="continue-button"
+      onClick={handleShowConfirmation}
+    >
+      Continue
+    </button>
+  )}
+</div>
     </div>
-    </div>
+  )
+}
+    
     </>
   );
 }

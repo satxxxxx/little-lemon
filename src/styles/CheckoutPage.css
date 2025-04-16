@@ -23,6 +23,7 @@
 }
 
 .checkout-container-vertical {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -215,10 +216,10 @@
 
 /* Etichette categorie 16pt Extra Bold */
 label {
-  font-size: 16px;
-  font-weight: 800; /* Extra Bold */
-  color: #555;
-  font-family: 'Karla', sans-serif;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: left;  /* ✅ Fondamentale */
 }
 
 input, select, textarea {
@@ -495,14 +496,11 @@ textarea {
 
 /* Pulsante di chiusura (X rossa) */
 .close-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
   width: 30px;
   height: 30px;
-  background-color: #e74c3c;
+  background-color: transparent;
   color: white;
-  border: none;
+  border: 2px solid white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -510,19 +508,27 @@ textarea {
   font-size: 20px;
   cursor: pointer;
   line-height: 0.7;
-  padding: 0;
+  padding: 01;
   font-weight: bold;
+  transition: all 0.2s ease;
 }
 
 .close-button:hover {
   background-color: #c0392b;
 }
-
 /* Pulsante Done nel popup di conferma */
 .done-button {
   margin-top: 20px;
   padding: 14px 35px;
   display: inline-block;
+}
+
+/* Wrapper che tiene il bottone X nell'angolo in alto a destra */
+.checkout-close-wrapper {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
 }
 
 .success-icon {

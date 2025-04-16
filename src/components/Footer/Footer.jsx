@@ -9,21 +9,15 @@ import '../../styles/layout.css';
 function Footer({ openLogin, user, onLogout }) {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const location = useLocation();
-  
-  // NOTA: Funzione per gestire i click sulle sezioni di navigazione
+
   const handleSectionClick = (e, id) => {
     e.preventDefault();
-    
-    // Se non siamo nella homepage, reindirizza alla homepage con hash
     if (location.pathname !== '/' && location.pathname !== '/little-lemon/') {
       window.location.href = `/#${id}`;
       return;
     }
-    
-    // Altrimenti scorri alla sezione
     const element = document.getElementById(id);
     const headerHeight = document.querySelector('.header').offsetHeight || 0;
-    
     if (element) {
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
@@ -33,15 +27,11 @@ function Footer({ openLogin, user, onLogout }) {
     }
   };
 
-  // NOTA: Gestisci il click sul pulsante Login/Logout
   const handleAuthClick = (e) => {
     e.preventDefault();
-    
     if (user) {
-      // Se l'utente è loggato, effettua il logout
       onLogout();
     } else {
-      // Altrimenti apri il modulo di login
       openLogin();
     }
   };
@@ -49,11 +39,11 @@ function Footer({ openLogin, user, onLogout }) {
   return (
     <footer className="footer" role="contentinfo">
       <div className="page-container">
-        <div className="inner-container footer-content">
-          <FooterColumn>
+        <div className="footer-grid">
+          <div className="footer-logo-column">
             <img src={logo} alt="Little Lemon Logo" className="footer-logo" />
-          </FooterColumn>
-          
+          </div>
+
           <FooterColumn>
             <nav aria-label="Footer navigation">
               <Link aria-label="Torna alla Home" to="/" className="footer-link">Home</Link>
@@ -87,15 +77,15 @@ function Footer({ openLogin, user, onLogout }) {
               )}
             </nav>
           </FooterColumn>
-          
+
           <FooterColumn title="Contatti">
-            <address>
-              <span>Gigio St.</span>
-              <span>003412345678</span>
-              <span>Littlelemon@littlelemon.es</span>
+            <address className="footer-address">
+              <div><span role="img" aria-label="address">📍</span> Gigio St.</div>
+              <div><span role="img" aria-label="phone">📞</span> <a href="tel:+34003412345678">003412345678</a></div>
+              <div><span role="img" aria-label="email">✉️</span> <a href="mailto:littlelemon@littlelemon.es">littlelemon@littlelemon.es</a></div>
             </address>
           </FooterColumn>
-          
+
           <FooterColumn title="Social">
             <a href="https://facebook.com" className="footer-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page">Facebook</a>
             <a href="https://instagram.com" className="footer-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram page">Instagram</a>

@@ -53,7 +53,7 @@ function Cart() {
         <div className="cart-header">
           <h2 className="subtitle">Your order</h2>
           <button 
-            className="close-button" 
+            className="cart-close-button" 
             onClick={toggleCart}
             aria-label="Close cart"
           >

@@ -36,14 +36,23 @@
 .menu-description {
   flex: 1;
 }  
-
 .order-button {
   background-color: var(--primary-yellow);
+  color: rgb(0, 0, 0);
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  margin-top: 15px;
+  border-radius: 16px;
+  padding: 10px 20px;
+  font-size: 18px;
   font-weight: bold;
+  font-family: var(--font-body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+  width: auto;
+  margin: 16px auto 20px auto; /* 👈 TOP AUTO BOTTOM SPACING */
+  min-width: 160px;
 }
 
 .order-button:hover {

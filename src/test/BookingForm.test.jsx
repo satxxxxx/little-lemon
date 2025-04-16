@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import BookingForm from '../components/BookingPage/BookingForm';
+import BookingForm from '../components/BookingPage/Archive/BookingForm';
 import '@testing-library/jest-dom';
 const renderForm = () => {
   render(

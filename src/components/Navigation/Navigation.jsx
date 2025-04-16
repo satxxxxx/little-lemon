@@ -1,83 +1,60 @@
-// src/components/Navigation/Navigation.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation({ openLogin, user, onLogout }) {
-  // NOTA: Funzione per scorrere a una sezione specifica
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const scrollToSection = (e, sectionId) => {
     e.preventDefault();
-    
-    // Se non siamo nella homepage, vai alla homepage con l'hash
     if (window.location.pathname !== '/' && window.location.pathname !== '/little-lemon/') {
       window.location.href = `/#${sectionId}`;
       return;
     }
-    
-    // Se siamo nella homepage, scorri alla sezione
     const section = document.getElementById(sectionId);
     if (section) {
-      const headerHeight = document.querySelector('.header').offsetHeight || 0;
+      const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
       const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: sectionTop - headerHeight,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: sectionTop - headerHeight, behavior: 'smooth' });
     }
+    setMenuOpen(false);
   };
 
-  // NOTA: Gestisci il click sul pulsante Login/Logout
   const handleAuthClick = (e) => {
     e.preventDefault();
-    
-    if (user) {
-      // Se l'utente è loggato, effettua il logout
-      onLogout();
-    } else {
-      // Altrimenti apri il modulo di login
-      openLogin();
-    }
+    user ? onLogout() : openLogin();
+    setMenuOpen(false);
   };
 
   return (
     <nav className="navigation" aria-label="Main navigation">
-      <ul className="nav-list">
+      <button
+        className="hamburger"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle menu"
+      >
+        ☰
+      </button>
+      <ul className={`nav-list ${menuOpen ? 'open' : ''}`}>
         <li className="nav-item">
-          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>Home</Link>
         </li>
         <li className="nav-item">
-          <a 
-            href="#about" 
-            className="nav-link" 
-            onClick={(e) => scrollToSection(e, 'about')}
-            aria-label="About section"
-          >
-            About
-          </a>
+          <a href="#about" className="nav-link" onClick={(e) => scrollToSection(e, 'about')}>About</a>
         </li>
         <li className="nav-item">
-          <Link to="/menu" className="nav-link">Menu</Link>
+          <Link to="/menu" className="nav-link" onClick={() => setMenuOpen(false)}>Menu</Link>
         </li>
         <li className="nav-item">
-          <Link to="/booking" className="nav-link">Reservations</Link>
+          <Link to="/booking" className="nav-link" onClick={() => setMenuOpen(false)}>Reservations</Link>
         </li>
         <li className="nav-item">
-          <Link to="/menu" className="nav-link">Order Online</Link>
+          <Link to="/checkout" className="nav-link" onClick={() => setMenuOpen(false)}>Cart</Link>
         </li>
         <li className="nav-item">
-          <a 
-            href="#" 
-            className="nav-link" 
-            onClick={handleAuthClick}
-            aria-label={user ? "Log out" : "Log in"}
-          >
+          <button className="nav-link auth-button" onClick={handleAuthClick}>
             {user ? 'Logout' : 'Login'}
-          </a>
-          {user && (
-            <div className="user-greeting" aria-live="polite">
-              Hi, {user.username}!
-            </div>
-          )}
+          </button>
         </li>
       </ul>
     </nav>

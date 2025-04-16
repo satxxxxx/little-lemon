@@ -14,16 +14,19 @@
   background-color: var(--primary-yellow);
   color: black;
   border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: var(--font-card-title);
-  font-weight: var(--font-card-weight);
+  border-radius: 16px;
+  padding: 10px 20px;
+  font-size: 18px;               /* FISSO: evita problemi con pt */
+  font-weight: bold;
+  font-family: var(--font-body);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
-  width: 100%;
+  transition: 0.3s ease;
+  width: auto;                   /* 👈 niente larghezza piena */
+  margin: 16px auto 1px auto;   /* 👈 spaziatura sopra e sotto */
+  min-width: 160px;              /* 👈 per coerenza con altri bottoni */
 }
 
 .menu-item-card:hover {
@@ -96,15 +99,19 @@
   color: black;
   border: none;
   border-radius: 16px;
-  padding: 12px;
-  font-size: var(--font-card-title);
-  font-weight: var(--font-card-weight);
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: var(--font-body);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
-  width: 100%;
+  transition: 0.3s ease;
+  width: auto;
+  margin: 16px auto 20px auto;
+  min-width: 160px;
+}width: 160px;
 }
 
 .order-button:hover {
