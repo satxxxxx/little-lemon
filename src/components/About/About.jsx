@@ -2,8 +2,8 @@
 import React from 'react';
 import './About.css';
 import '../../styles/layout.css';
-import chefImage from '../../assets/restaurant-interior.jpg';
-import restaurantImage from '../../assets/chef-cooking.jpg'; 
+import restaurantImage from '../../assets/restaurant-interior.jpg';
+import chefImage from '../../assets/chef-cooking.jpg';
 
 function About() {
     return (
@@ -36,15 +36,15 @@ function About() {
                     </div>
                     <div className="about-images">
                     <img 
-                        src={chefImage} // ora dietro
+                        src={chefImage}
                         alt="Chef preparing food"
-                        className="about-main-image" 
-                    />
-                    <img 
-                        src={restaurantImage} // ora sopra
-                        alt="Little Lemon restaurant interior" 
                         className="about-chef-image"
-                    />
+                        />
+                    <img 
+                        src={restaurantImage} 
+                        alt="Little Lemon restaurant interior" 
+                        className="about-main-image" 
+                        />                                    
                     </div>
                 </div>
             </div>
