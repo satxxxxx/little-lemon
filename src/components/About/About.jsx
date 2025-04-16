@@ -2,8 +2,8 @@
 import React from 'react';
 import './About.css';
 import '../../styles/layout.css';
-import restaurantImage from '../../assets/chef-cooking.jpg'; // Immagine principale
-import chefImage from '../../assets/restaurant-interior.jpg'; // Immagine secondaria
+import chefImage from '../../assets/restaurant-interior.jpg';
+import restaurantImage from '../../assets/chef-cooking.jpg'; 
 
 function About() {
     return (
@@ -35,18 +35,16 @@ function About() {
                         </div>
                     </div>
                     <div className="about-images">
-                        {/* NOTA: Aggiungiamo attributi aria-hidden alle immagini decorative
-                             ma manteniamo alt text per accessibilità */}
-                        <img 
-                            src={restaurantImage} 
-                            alt="Little Lemon restaurant interior" 
-                            className="about-main-image" 
-                        />
-                        <img 
-                            src={chefImage}
-                            alt="Chef preparing food"
-                            className="about-chef-image"
-                        />
+                    <img 
+                        src={chefImage} // ora dietro
+                        alt="Chef preparing food"
+                        className="about-main-image" 
+                    />
+                    <img 
+                        src={restaurantImage} // ora sopra
+                        alt="Little Lemon restaurant interior" 
+                        className="about-chef-image"
+                    />
                     </div>
                 </div>
             </div>

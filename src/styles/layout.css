@@ -21,26 +21,7 @@
     width: 100%;
   }
   
-  /* Linee guida visibili per debug */
- .page-container::before,
-  .page-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: rgba(255, 0, 0, 0.5);
-    z-index: 1000;
-  }
-  
-  .page-container::before {
-    left: 0;
-  }
-  
-  .page-container::after {
-    right: 0;
-  }
-  
+
   /* Media query per responsività */
   @media (max-width: 768px) {
     .column-layout {
