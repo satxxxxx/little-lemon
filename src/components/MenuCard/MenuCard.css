@@ -51,7 +51,7 @@
   justify-content: center;
   transition: 0.3s ease;
   width: auto;
-  margin: 16px auto 20px auto; /* 👈 TOP AUTO BOTTOM SPACING */
+  margin: 16px auto 20px auto; /*  TOP AUTO BOTTOM SPACING */
   min-width: 160px;
 }
 

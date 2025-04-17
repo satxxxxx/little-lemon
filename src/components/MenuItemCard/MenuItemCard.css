@@ -24,9 +24,9 @@
   align-items: center;
   justify-content: center;
   transition: 0.3s ease;
-  width: auto;                   /* 👈 niente larghezza piena */
-  margin: 16px auto 1px auto;   /* 👈 spaziatura sopra e sotto */
-  min-width: 160px;              /* 👈 per coerenza con altri bottoni */
+  width: auto;                   /*  niente larghezza piena */
+  margin: 16px auto 1px auto;   /*  spaziatura sopra e sotto */
+  min-width: 160px;              /* per coerenza con altri bottoni */
 }
 
 .menu-item-card:hover {
@@ -111,8 +111,8 @@
   width: auto;
   margin: 16px auto 20px auto;
   min-width: 160px;
-}width: 160px;
 }
+
 
 .order-button:hover {
   opacity: 0.9;

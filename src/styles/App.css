@@ -59,17 +59,10 @@ body {
 }
 
 /* Colori specifici per le sezioni */
-.testimonials-section {
-  background-color: #FFFFFF; /* Colore di sfondo per la sezione testimonials */
-}
+
 
 /* Display Title - Markazi Text Medium 64pt */
-.display-title {
-  font-family: var(--font-title);
-  font-size: var(--font-display-title);
-  font-weight: var(--font-display-weight);
-  color: var(--primary-green);
-}
+
 
 /* Subtitle - Markazi Text Regular 40pt */
 .subtitle {
@@ -86,12 +79,7 @@ body {
 }
 
 /* Section Title - Karla Extra Bold 20pt Uppercase */
-.section-title {
-  font-family: var(--font-body);
-  font-size: var(--font-section-title);
-  font-weight: var(--font-section-weight);
-  text-transform: uppercase;
-}
+
 
 /* Special Section - Karla Extra Bold 16pt */
 .special-section {
@@ -101,37 +89,14 @@ body {
 }
 
 /* Card Title - Karla Bold 18pt */
-.card-title {
-  font-family: var(--font-body);
-  font-size: var(--font-card-title);
-  font-weight: var(--font-card-weight);
-}
 
-.order-button {
-  background-color: var(--primary-yellow);
-  color: black;
-  border: none;
-  border-radius: 16px;
-  padding: 10px 20px; /* leggermente ridotto per eleganza */
-  font-size: var(--font-card-title);
-  font-weight: var(--font-card-weight);
-  font-family: var(--font-body);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s ease;
-  width: auto;       /* 👈 il bottone NON riempie tutta la card */
-  margin: 0 auto;    /* 👈 lo centriamo dentro la card */
-  min-width: 160px;  /* 👈 evita che diventi troppo stretto */
-} 
+
+ 
  
 
 /* Regola globale per tutte le icone di consegna */
-.delivery-icon, .order-icon, span:contains("🛵") {
-  font-size: 1.8rem !important;
-  margin-right: 10px;
-}
+.delivery-icon,
+
 
 /* Paragraph Text - Karla Regular 16pt */
 .paragraph, p {
@@ -143,11 +108,7 @@ body {
 }
 
 /* Highlight Text - Karla Medium 16pt */
-.highlight-text {
-  font-family: var(--font-body);
-  font-size: var(--font-highlight);
-  font-weight: var(--font-highlight-weight);
-}
+
 
 /* Base element styles */
 h1 {
@@ -191,72 +152,21 @@ html {
 }
 
 /* Stili per l'overlay e il modulo di login */
-.login-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 
-.login-modal {
-  background-color: white;
-  border-radius: 10px;
-  padding: 30px;
-  max-width: 400px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
 
-.close-login-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  cursor: pointer;
-  line-height: 0.7;
-  padding: 0;
-  font-weight: bold;
-}
+
+
+
 
 .close-login-button:hover {
   background-color: #c0392b;
 }
 
-.login-title {
-  margin-bottom: 20px;
-  text-align: center;
-  font-family: 'Markazi Text', serif;
-  font-size: 32px;
-  color: #333;
-}
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
-.login-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
+
+
 
 .login-form-group label {
   font-size: 16px;
@@ -287,28 +197,13 @@ html {
   outline: none;
 }
 
-.login-button {
-  background-color: #F4CE14;
-  color: #333;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 10px;
-}
+
 
 .login-button:hover {
   background-color: #e4be12;
 }
 
-.login-footer {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 0.9rem;
-}
+
 
 .login-footer p {
   margin: 8px 0;
@@ -343,4 +238,3 @@ html {
 .username {
   font-weight: bold;
 }
-

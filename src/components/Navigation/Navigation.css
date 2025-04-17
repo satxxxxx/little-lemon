@@ -39,13 +39,35 @@
 
 /* LOGIN BUTTON */
 .auth-button {
-  all: unset;
+  color: #495e57; /* Colore verde originale del sito */
   font-weight: bold;
-  font-family: inherit;
-  color: inherit;
-  text-decoration: none;
-  padding: 0;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 0;
+}
+
+.auth-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto; /* Spinge tutto a destra */
+}
+
+.username-inline {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #495e57; /* Stesso verde */
+  opacity: 0.9;
+  margin-left: 2px;
+}
+
+.username-greeting {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #555;
+  padding-left: 2px;
+  margin-top: -2px; /*  leggero spostamento in basso */
 }
 
 /* HAMBURGER */

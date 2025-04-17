@@ -36,27 +36,38 @@ function Navigation({ openLogin, user, onLogout }) {
         ☰
       </button>
       <ul className={`nav-list ${menuOpen ? 'open' : ''}`}>
-        <li className="nav-item">
-          <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>Home</Link>
+          <li className="nav-item">
+            <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>Home</Link>
+          </li>
+          <li className="nav-item">
+            <a href="#about" className="nav-link" onClick={(e) => scrollToSection(e, 'about')}>About</a>
+          </li>
+          <li className="nav-item">
+            <Link to="/menu" className="nav-link" onClick={() => setMenuOpen(false)}>Menu</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/booking" className="nav-link" onClick={() => setMenuOpen(false)}>Reservations</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/checkout" className="nav-link" onClick={() => setMenuOpen(false)}>Cart</Link>
+          </li>
+          
+          {/* ✅ Pulsante Login / Logout */}
+          <li className="nav-item auth-section">
+          {user ? (
+            <>
+              <button className="nav-link auth-button" onClick={handleAuthClick}>
+                Logout
+              </button>
+              <span className="username-inline">Hi {user.username}</span>
+            </>
+          ) : (
+            <button className="nav-link auth-button" onClick={handleAuthClick}>
+              Login
+            </button>
+          )}
         </li>
-        <li className="nav-item">
-          <a href="#about" className="nav-link" onClick={(e) => scrollToSection(e, 'about')}>About</a>
-        </li>
-        <li className="nav-item">
-          <Link to="/menu" className="nav-link" onClick={() => setMenuOpen(false)}>Menu</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/booking" className="nav-link" onClick={() => setMenuOpen(false)}>Reservations</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/checkout" className="nav-link" onClick={() => setMenuOpen(false)}>Cart</Link>
-        </li>
-        <li className="nav-item">
-          <button className="nav-link auth-button" onClick={handleAuthClick}>
-            {user ? 'Logout' : 'Login'}
-          </button>
-        </li>
-      </ul>
+        </ul>
     </nav>
   );
 }
