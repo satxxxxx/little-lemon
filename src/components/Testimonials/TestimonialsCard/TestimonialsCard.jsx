@@ -8,8 +8,9 @@ function TestimonialsCard({ name, imageSrc, imageAlt, description, rating }) {
             <div className="testimonial-header">
                 <img src={imageSrc} alt={imageAlt} className="testimonial-image" />
                 {rating && (
-                    <div 
-                        className="rating-badge" 
+                    <div
+                        className="rating-badge"
+
                         aria-label={`Rating: ${rating} out of 5`}
                     >
                         <span className="star" aria-hidden="true">★</span>
